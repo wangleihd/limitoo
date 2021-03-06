@@ -16,9 +16,8 @@ function Item({news}) {
 
   return (
     <div className="item" key={Id}>
-        {Title}
-        {Description}
-
+        <div className="title">{Title}</div>
+        <div className="desc">{Description}</div>
     </div>
   )
 }
