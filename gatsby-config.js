@@ -1,3 +1,5 @@
+const { createProxyMiddleware } = require("http-proxy-middleware")
+
 module.exports = {
   siteMetadata: {
     title: `Gatsby Default Starter`,
@@ -28,9 +30,18 @@ module.exports = {
         icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
       },
     },
+    `gatsby-plugin-antd`,
     `gatsby-plugin-gatsby-cloud`,
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
   ],
+
+  developMiddleware: app => {
+    app.use(
+      createProxyMiddleware('/v1', {
+        target: 'http://h5fs.com', changeOrigin: true
+      })
+    )
+  },
 }

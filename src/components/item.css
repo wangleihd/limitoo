@@ -1,0 +1,9 @@
+.item {
+    margin: 20px;
+    padding: 10px;
+    border: 1px solid;
+    border-radius: 3px;
+}
+.context {
+    margin-bottom: 10px;
+}

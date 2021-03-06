@@ -1,11 +1,14 @@
 {
-  "name": "gatsby-starter-default",
+  "name": "limit_oo",
   "private": true,
-  "description": "A simple starter to get up and developing quickly with Gatsby",
-  "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "description": "Limit->oo",
+  "version": "1.0.0",
+  "author": "Richard Wang <wangleihd@gmail.com>",
   "dependencies": {
+    "antd": "^4.13.0",
+    "axios": "^0.21.1",
     "gatsby": "^3.0.1",
+    "gatsby-plugin-antd": "^2.2.0",
     "gatsby-plugin-gatsby-cloud": "^2.0.0",
     "gatsby-plugin-image": "^1.0.0",
     "gatsby-plugin-manifest": "^3.0.0",
@@ -14,6 +17,7 @@
     "gatsby-plugin-sharp": "^3.0.0",
     "gatsby-source-filesystem": "^3.0.0",
     "gatsby-transformer-sharp": "^3.0.0",
+    "http-proxy-middleware": "^1.0.6",
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
@@ -23,9 +27,8 @@
     "prettier": "2.2.1"
   },
   "keywords": [
-    "gatsby"
+    "limitoo"
   ],
-  "license": "0BSD",
   "scripts": {
     "build": "gatsby build",
     "develop": "gatsby develop",
@@ -34,12 +37,5 @@
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
-  },
-  "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
   }
 }

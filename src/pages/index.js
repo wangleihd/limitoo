@@ -1,29 +1,59 @@
-import * as React from "react"
-import { Link } from "gatsby"
+import React, { Component } from "react"
+import axios from "axios"
+import { Skeleton, Switch, List, Avatar } from 'antd';
+import { StarOutlined, LikeOutlined, MessageOutlined } from '@ant-design/icons';
+
 import { StaticImage } from "gatsby-plugin-image"
 
 import Layout from "../components/layout"
-import SEO from "../components/seo"
+import Item from "../components/item"
+import "./index.css"
 
-const IndexPage = () => (
-  <Layout>
-    <SEO title="Home" />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <StaticImage
-      src="../images/gatsby-astronaut.png"
-      width={300}
-      quality={95}
-      formats={["AUTO", "WEBP", "AVIF"]}
-      alt="A Gatsby astronaut"
-      style={{ marginBottom: `1.45rem` }}
-    />
-    <p>
-      <Link to="/page-2/">Go to page 2</Link> <br />
-      <Link to="/using-typescript/">Go to "Using TypeScript"</Link>
-    </p>
-  </Layout>
-)
+class ClientFetchingExample extends Component { 
 
-export default IndexPage
+  state = {
+    loading: false,
+    error: false,
+    data: [],
+  }
+  componentDidMount() {
+    this.getNewData()
+  }
+  render() {
+    const { data, loading } = this.state
+    if(loading === true) {
+      return (
+        <Layout>
+         <div className="loading">
+          Loading ...
+         </div>
+        </Layout>
+      )
+    } else {
+      return (
+        <Layout>
+          { data.map(item => (
+            <Item news={item} key={item.id} ></Item>
+          ))
+          }
+        </Layout>
+      )
+    }
+
+  }
+  async getNewData(){
+    this.setState({ loading: true })
+    await axios.get(`/v1/news-en`).then(ret => {
+        const { data, code } = ret
+        if(!code){
+          this.setState({ data: data.data })
+        }
+      })
+      .catch(error => {
+        this.setState({ loading: false, error })
+      })
+    this.setState({ loading: false })
+  }
+}
+
+export default ClientFetchingExample

@@ -33,7 +33,13 @@ const Layout = ({ children }) => {
           padding: `0 1.0875rem 1.45rem`,
         }}
       >
-        <main>{children}</main>
+        <main
+        style={{
+          maxWidth: 660,
+         }}
+        >{children}</main>
+        
+        
         <footer
           style={{
             marginTop: `2rem`,
@@ -41,7 +47,7 @@ const Layout = ({ children }) => {
         >
           © {new Date().getFullYear()}, Built with
           {` `}
-          <a href="https://www.gatsbyjs.com">Gatsby</a>
+          <a href="https://www.limitoo.com">limit->oo</a>
         </footer>
       </div>
     </>
