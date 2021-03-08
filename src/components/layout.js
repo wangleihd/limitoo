@@ -25,6 +25,7 @@ const Layout = ({ children }) => {
 
   return (
     <>
+    <div style={{ backgroundColor: `#fafafa`}}>
       <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
       <div
         style={{
@@ -41,13 +42,15 @@ const Layout = ({ children }) => {
         
         <footer
           style={{
-            marginTop: `2rem`,
+            textAlign: `center`,
+            margin: `2rem 0`,
           }}
         >
           © {new Date().getFullYear()}, Built with
-          {` `}
-          <a href="https://www.limitoo.com">limit->oo</a>
+          {` Limitoo News `}
+          <a href="https://limitoo.com">limitoo.com</a>
         </footer>
+      </div>
       </div>
     </>
   )

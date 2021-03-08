@@ -9,6 +9,20 @@ import Layout from "../components/layout"
 import Item from "../components/item"
 import "./index.css"
 
+const listData = [];
+for (let i = 0; i < 20; i++) {
+  listData.push({});
+}
+
+const IconText = ({ icon, text }) => (
+  <span>
+    {React.createElement(icon, { style: { marginRight: 8 } })}
+    {text}
+  </span>
+);
+
+
+
 class ClientFetchingExample extends Component { 
 
   state = {
@@ -25,7 +39,42 @@ class ClientFetchingExample extends Component {
       return (
         <Layout>
          <div className="loading">
-          Loading ...
+         <List
+          itemLayout="vertical"
+          size="large"
+          dataSource={listData}
+          renderItem={item => (
+            <List.Item
+              key={item.title}
+              actions={
+                !loading && [
+                  <IconText icon={StarOutlined} text="156" key="list-vertical-star-o" />,
+                  <IconText icon={LikeOutlined} text="156" key="list-vertical-like-o" />,
+                  <IconText icon={MessageOutlined} text="2" key="list-vertical-message" />,
+                ]
+              }
+              extra={
+                !loading && (
+                  <img
+                    width={272}
+                    alt="logo"
+                    src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
+                  />
+                )
+              }
+            >
+              <Skeleton loading={loading} active avatar>
+                <List.Item.Meta
+                  avatar={<Avatar src={item.avatar} />}
+                  title={<a href={item.href}>{item.title}</a>}
+                  description={item.description}
+                />
+                {item.content}
+              </Skeleton>
+            </List.Item>
+          )}
+        />
+
          </div>
         </Layout>
       )
