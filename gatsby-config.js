@@ -1,3 +1,5 @@
+const { createProxyMiddleware } = require("http-proxy-middleware")
+
 module.exports = {
   siteMetadata: {
     title: `Limitoo News`,
@@ -35,6 +37,12 @@ module.exports = {
     // `gatsby-plugin-offline`,
   ],
 
-
+  developMiddleware: app => {
+    app.use(
+      createProxyMiddleware('/v1', {
+        target: 'https://h5fs.com', changeOrigin: true
+      })
+    )
+  },
   pathPrefix: '/limitoo',
 }

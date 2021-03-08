@@ -98,7 +98,7 @@ class ClientFetchingExample extends Component {
   async getNewData(){
     this.setState({ loading: true })
     const page = this.state.page
-    await axios.get(`https://h5fs.com/v1/newslists?page=${page}`).then(ret => {
+    await axios.get(`/v1/newslists?page=${page}`).then(ret => {
         const { data, code } = ret
         if(!code){
           this.setState({ data: data.data })
