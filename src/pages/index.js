@@ -1,4 +1,5 @@
 import React, { Component } from "react"
+import ReactMtfScrollList from 'react-mtfscrolllist'
 import axios from "axios"
 import { Skeleton, Switch, List, Avatar } from 'antd';
 import { StarOutlined, LikeOutlined, MessageOutlined } from '@ant-design/icons';
@@ -24,12 +25,16 @@ const IconText = ({ icon, text }) => (
 
 
 class ClientFetchingExample extends Component { 
-
-  state = {
-    loading: false,
-    error: false,
-    data: [],
+  constructor(props){
+    super(props);
+    this.state = {
+      loading: false,
+      error: false,
+      data: [],
+      page: 1,
+    }
   }
+
   componentDidMount() {
     this.getNewData()
   }
@@ -92,7 +97,8 @@ class ClientFetchingExample extends Component {
   }
   async getNewData(){
     this.setState({ loading: true })
-    await axios.get(`https://h5fs.com/v1/newslists?page=1`).then(ret => {
+    const page = this.state.page
+    await axios.get(`https://h5fs.com/v1/newslists?page=${page}`).then(ret => {
         const { data, code } = ret
         if(!code){
           this.setState({ data: data.data })
