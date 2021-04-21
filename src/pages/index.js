@@ -5,28 +5,24 @@ import { StaticImage } from "gatsby-plugin-image"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 
-const IndexPage = ({data}) => {
-  const lists = data.allMysqlLists.edges
-  console.log("111111", lists);
-  return (
-  <Layout>
-    <SEO title="Home" />
-    {data.allMysqlLists.edges.map(({node}, index) => (
-      <tr key={index}>
-        <td>{index+1}</td>
-        <td>{node.title}</td>
-        <td>{node.menu}</td>
-        <td>{node.source}</td>
-        <td>{node.create_time}</td>
-        
-      </tr>
-    ))
-
-    }
-  </Layout>
-
+const IndexPage = ({data}) => (
+    <Layout>
+      <SEO title="home" />
+      <h1>My WordPress Blog</h1>
+      <h4>Posts</h4>
+      {data.allMysqlLists.edges.map(({ node }, index) => (
+        <div key={index}>
+          <Link to={`/posts/${index}`}>
+            <p>{node.title}</p>
+          </Link>
+          <p>{node.description}</p>
+          <p>{node.href}</p>
+          <p>{node.create_time}</p>
+        </div>
+      ))}
+    </Layout>
   )
-}
+
 export const query = graphql`
 {
   allMysqlLists(sort: {fields: create_time, order: DESC}) {
@@ -36,7 +32,8 @@ export const query = graphql`
         description
         menu
         source
-        create_time(formatString: "MM DD, YYYY")
+        href
+        create_time
       }
     }
   }

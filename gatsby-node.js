@@ -1,29 +1,34 @@
-const axios = require("axios")
+const path = require(`path`)
 
-
-module.exports = function (api) {
-  api.loadSource(async ({ addCollection }) => {
-    // Use the Data Store API here: https://gridsome.org/docs/data-store-api/
-    const collection = addCollection('Post')
-
-    const { data } = await axios.get(`https://api.21newsx.com/v1/newslists`)
-
-    console.log('1111-aaaa', data);
-    
-    for (const item of data) {
-      collection.addNode({
-        id: item.id,
-        title: item.title,
-        content: item.body
-      })
+exports.createPages = ({ graphql, actions }) => {
+  const { createPage } = actions
+  return graphql(`
+  {
+    allMysqlLists(sort: {fields: create_time, order: DESC}) {
+      edges {
+        node {
+          title
+          description
+          menu
+          source
+          href
+          create_time(formatString: "MM-DD-YYYY")
+        }
+      }
     }
-  })
-
-  api.createPages(({ createPage }) => {
-    // Use the Pages API here: https://gridsome.org/docs/pages-api/
-    createPage({
-      path: '/my-page',
-      component: "./src/templates/MyPage.vue"
+  }`).then(result => {
+    result.data.allMysqlLists.edges.forEach(({ node }, index) => {
+      createPage({
+        // Decide URL structure
+        path: `/posts/${index}`,
+        // path to template
+        component: path.resolve(`./src/templates/blog-post.js`),
+        context: {
+          // This is the $slug variable
+          // passed to blog-post.js
+          slug: node.href,
+        },
+      })
     })
   })
 }
