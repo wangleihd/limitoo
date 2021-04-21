@@ -43,7 +43,7 @@ module.exports = {
         },
         queries: [
           {
-            statement: 'SELECT * FROM nytimes',
+            statement: 'select * from nytimes ny, nytimes_details nyd where ny.id = nyd.nytimes_id',
             idFieldName: 'title',
             name: 'Lists'
           }

@@ -17,10 +17,11 @@ exports.createPages = ({ graphql, actions }) => {
       }
     }
   }`).then(result => {
-    result.data.allMysqlLists.edges.forEach(({ node }, index) => {
+    const posts = result.data.allMysqlLists.edges
+    posts.forEach(({ node }) => {
       createPage({
         // Decide URL structure
-        path: `/posts/${index}`,
+        path: `/posts/${node.title.split(' ').join('_')}/`,
         // path to template
         component: path.resolve(`./src/templates/blog-post.js`),
         context: {
@@ -30,5 +31,24 @@ exports.createPages = ({ graphql, actions }) => {
         },
       })
     })
+
+    const postsPerPage = 10
+    const numPages = Math.ceil(posts.length / postsPerPage)
+
+    Array.from({ length: numPages }).forEach((_, i) => {
+      createPage({
+        path: i === 0 ? `/` : `/${i + 1}`,
+        component: path.resolve("./src/templates/blog-list.js"),
+        context: {
+          limit: postsPerPage,
+          skip: i * postsPerPage,
+          numPages,
+          currentPage: i + 1,
+        },
+      })
+    })
+
+
+
   })
 }
