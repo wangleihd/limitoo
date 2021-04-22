@@ -1,4 +1,5 @@
 const path = require(`path`)
+const getUuid = require('uuid-by-string')
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
@@ -21,7 +22,7 @@ exports.createPages = ({ graphql, actions }) => {
     posts.forEach(({ node }) => {
       createPage({
         // Decide URL structure
-        path: `/posts/${node.title.split(' ').join('_')}/`,
+        path: `/posts/${getUuid(node.title)}/`,
         // path to template
         component: path.resolve(`./src/templates/blog-post.js`),
         context: {

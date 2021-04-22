@@ -1,9 +1,12 @@
 import React from "react"
+const getUuid = require('uuid-by-string')
 import { Link, graphql } from "gatsby"
 import { StaticImage } from "gatsby-plugin-image"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
+
+
 
 class IndexLists extends React.Component {
     render() {
@@ -19,7 +22,7 @@ class IndexLists extends React.Component {
       {posts.map(({ node }, index) => (
           <div key={index}>
           <SEO title={node.title} />
-          <Link to={`/posts/${node.title.split(' ').join('_')}/`}>
+          <Link to={`/posts/${getUuid(node.title)}/`}>
             <p>{node.title}</p>
           </Link>
           <p>{node.description}</p>

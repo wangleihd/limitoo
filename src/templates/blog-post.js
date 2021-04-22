@@ -4,7 +4,6 @@ import { graphql } from "gatsby"
 
 const blogPost = ({ data }) => {
   const post = data.allMysqlLists.edges[0].node
-  console.log(post)
   return (
     <Layout>
       <div>
