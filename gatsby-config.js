@@ -60,5 +60,20 @@ module.exports = {
         ]
       }
     },
+    {
+      resolve: 'gatsby-plugin-robots-txt',
+      options: {
+        host: 'https://www.21newsx.com',
+        sitemap: 'https://www.21newsx.com/sitemap.xml',
+        env: {
+          development: {
+            policy: [{ userAgent: '*', disallow: ['/'] }]
+          },
+          production: {
+            policy: [{ userAgent: '*', allow: '/' }]
+          }
+        }
+      }
+    }
   ],
 }
