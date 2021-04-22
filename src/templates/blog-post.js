@@ -4,14 +4,21 @@ import { Affix, Button, Image } from 'antd';
 import { CaretLeftOutlined } from '@ant-design/icons';
 import Layout from "../components/layout"
 import SEO from "../components/seo"
+const getUuid = require('uuid-by-string')
 
 const blogPost = ({ data }) => {
   const post = data.allMysqlLists.edges[0].node
   const context = JSON.parse(post.content)
   const backImgUrl = `https://oss.edms.site/news/${post.local_src}`
   const imagesUrl = post.src
+  const seourl = `https://21newsx.com/posts/${getUuid(post.title)}/`
   let imgshow = <></>
   let showtext = <></>
+  let seoimges = post.img_url
+
+  if(post.src) {
+      seoimges = post.src
+  }
   
   switch(post.source) {
     case 'foxnews':
@@ -71,7 +78,7 @@ const blogPost = ({ data }) => {
   return (
     <Layout>
       <div className="postmain">
-      <SEO title={post.title} description={post.description} />
+      <SEO title={post.title} description={post.description} images={seoimges} url={seourl} />
       <div style={{ textAlign:"right", marginRight:20 }}>
       <Affix offsetTop={520}>
           <Button type="primary" size="large" shape="circle" icon={<CaretLeftOutlined />} onClick={() => navigate(-1)} />
