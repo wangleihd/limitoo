@@ -1,10 +1,14 @@
 import React from "react"
-const getUuid = require('uuid-by-string')
 import { Link, graphql } from "gatsby"
-import { StaticImage } from "gatsby-plugin-image"
+import { Row, Col, Button } from "antd"
+
+import Item from "../components/item"
+import Bbc from "../components/bbc"
+import Foxnews from "../components/foxnews"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
+
 
 
 
@@ -12,6 +16,7 @@ class IndexLists extends React.Component {
     render() {
       const { data, pageContext } = this.props
       const posts = data.allMysqlLists.edges
+      const siteTitle = data.site.siteMetadata.title
       const { currentPage, numPages } = pageContext
       const isFirst = currentPage === 1
       const isLast = currentPage === numPages
@@ -19,43 +24,42 @@ class IndexLists extends React.Component {
       const nextPage = (currentPage + 1).toString()
       return (
     <Layout>
-      {posts.map(({ node }, index) => (
-          <div key={index}>
-          <SEO title={node.title} />
-          <Link to={`/posts/${getUuid(node.title)}/`}>
-            <p>{node.title}</p>
-          </Link>
-          <p>{node.description}</p>
-          <p>{node.href}</p>
-          <p>{node.create_time}</p>
-        </div>
-      ))}
+        <SEO title={siteTitle} keywords={[`News`, `The World Newes`, `media`, `politics`, `magazine`]}/>
+      { posts.map(({ node }, index) => {
+          switch(node.source) {
+            // case 'foxnews':
+            //   return (<Foxnews news={node} key={index} />)
+            // case 'bbc':
+            //   return (<Bbc news={node} key={index} />)
+            // case 'nytime':
+            //   return (<Item news={node} key={index} />)
+            default:
+              return (<Item news={node} key={index} />)
+          }
+      }
+      )}
 
-      <div className="container">
-            <nav className="pagination" role="navigation">
-              <ul>
-                {!isFirst && (
-                  <p>
-                    <Link to={`/${prevPage}/`} rel="prev" className="newer-posts">
-                      ← Previous Page
+      <div className="item">
+      <Row gutter={[8]} justify="start">
+        <Col span={8}>
+        {!isFirst && (
+                    <Link to={`/${prevPage}/`} rel="prev">
+                      <Button type="primary" ghost>← Previous</Button>
                     </Link>
-                  </p>
                 )}
-                <p>
-                  <span className="page-number">
-                    Page {currentPage} of {numPages}
-                  </span>
-                </p>
-                {!isLast && (
-                  <p>
-                    <Link to={`/${nextPage}/`} rel="next" className="older-posts">
-                      Next Page →
+        </Col>
+        <Col span={8} style={{ textAlign: "center" }}>
+        Page {currentPage} of {numPages}
+            </Col>
+        <Col span={8} style={{ textAlign: "right" }}>
+        {!isLast && (
+                    <Link to={`/${nextPage}/`} rel="next">
+                      <Button type="primary" ghost>Next →</Button>
                     </Link>
-                  </p>
                 )}
-              </ul>
-            </nav>
-          </div>
+            </Col>
+            </Row>
+        </div>
     </Layout>
       )
                 }
@@ -63,6 +67,11 @@ class IndexLists extends React.Component {
 
 export const query = graphql`
 query($skip: Int!, $limit: Int!) {
+    site {
+        siteMetadata {
+          title
+        }
+      }
   allMysqlLists(sort: {fields: create_time, order: DESC}
     limit: $limit
     skip: $skip

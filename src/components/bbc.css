@@ -1,0 +1,11 @@
+.item-bbc {
+    margin: 0.5rem;
+    padding: 0.5rem;
+    border: 0.1rem solid #fff1f0;
+    border-radius: 0.2rem;
+    background-color: #fff;
+}
+
+.image-size-bbc {
+    width: 100%;
+}
