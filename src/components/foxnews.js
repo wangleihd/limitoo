@@ -8,58 +8,60 @@
 import React, { useState } from "react"
 import * as dayjs from "dayjs"
 import * as relativeTime from "dayjs/plugin/relativeTime"
-
+import { Link } from "gatsby"
 import PropTypes from "prop-types"
 
-import { Row, Col, Image, Modal, Tag } from "antd"
+import { Row, Col, Image, Tag } from "antd"
 
 import "./item.css"
 
+const getUuid = require('uuid-by-string')
+
 function FoxNews({ news }) {
-  const [isModalVisible, setIsModalVisible] = useState(false)
-  const {
-    Id,
-    Title,
-    Description,
-    Source,
-    ImgUrl,
-    LoadImg,
-    Href,
-    CreateTime,
-    Menu,
-    Content,
-  } = news
-  const context = JSON.parse(Content)
-  dayjs.extend(relativeTime)
-  const ctime = dayjs().to(dayjs(CreateTime))
-  const backImgUrl = `https://oss.edms.site/news/${LoadImg}`
-  const showModal = () => {
-    setIsModalVisible(true)
-  }
-  const handleOk = () => {
-    setIsModalVisible(false)
-  }
+  const { title,
+    status,
+    src,
+    source,
+    menu,
+    local_src,
+    load_img,
+    img_url,
+    href,
+    description,
+    create_time,
+    country,
+} = news
+dayjs.extend(relativeTime)
+const ctime = dayjs().to(dayjs(create_time))
+let backImgUrl = `https://oss.edms.site/news/${load_img}`
+let imagesUrl = img_url
+if (local_src) {
+backImgUrl = `https://oss.edms.site/news/${local_src}`
+imagesUrl = src
+}
   return (
-    <div className="item" key={Id}>
-      <Row gutter={[8]} justify="start" onClick={showModal}>
+    <div className="item" key={img_url}>
+      <Row gutter={[8]} justify="start">
         <Col span={8}>
           <Image
             preview={false}
             className="image-size"
-            src={ImgUrl}
+            src={imagesUrl}
             fallback={backImgUrl}
-          ></Image>
+           />
         </Col>
         <Col span={16}>
-          <div className="title">{Title}</div>
+        <Link to={`/posts/${getUuid(title)}/`}>
+             <div className="title">{title}</div>
+          </Link>
         </Col>
         <Col span={24}>
-          <div className="desc">{Description}</div>
+          <div className="desc">{description}</div>
         </Col>
       </Row>
       <Row gutter={[8]} justify="start" align="middle">
         <Col span={8}>
-          <Tag>{Menu}</Tag>
+          <Tag>{menu}</Tag>
         </Col>
         <Col span={8}>
           <div className="ctime">{ctime}</div>
@@ -67,34 +69,12 @@ function FoxNews({ news }) {
         <Col span={8}>
           <div className="source">
             src:{" "}
-            <a href={Href} target="blank">
-              {Source.toUpperCase()}
+            <a href={href} target="blank">
+              {source.toUpperCase()}
             </a>
           </div>
         </Col>
       </Row>
-      <Modal
-        title={Source.toUpperCase()}
-        visible={isModalVisible}
-        onCancel={handleOk}
-        onOk={handleOk}
-        okText="Close"
-      >
-        <h4>{Title}</h4>
-        {context.map((item, index) => {
-          const strong = "<strong"
-          if (!item.includes(strong)) {
-            const html = { __html: item }
-            return (
-              <div
-                className="content"
-                key={index}
-                dangerouslySetInnerHTML={html}
-              ></div>
-            )
-          }
-        })}
-      </Modal>
     </div>
   )
 }

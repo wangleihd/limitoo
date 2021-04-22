@@ -27,12 +27,12 @@ class IndexLists extends React.Component {
         <SEO title={siteTitle} keywords={[`News`, `The World Newes`, `media`, `politics`, `magazine`]}/>
       { posts.map(({ node }, index) => {
           switch(node.source) {
-            // case 'foxnews':
-            //   return (<Foxnews news={node} key={index} />)
-            // case 'bbc':
-            //   return (<Bbc news={node} key={index} />)
-            // case 'nytime':
-            //   return (<Item news={node} key={index} />)
+            case 'foxnews':
+              return (<Foxnews news={node} key={index} />)
+            case 'bbc':
+              return (<Bbc news={node} key={index} />)
+            case 'nytime':
+              return (<Item news={node} key={index} />)
             default:
               return (<Item news={node} key={index} />)
           }

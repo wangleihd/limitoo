@@ -12,25 +12,55 @@ const blogPost = ({ data }) => {
   const imagesUrl = post.src
   let imgshow = <></>
   let showtext = <></>
-  if(post.src) {
-    imgshow = <Image preview={false} className="image-size" src={imagesUrl} fallback={backImgUrl}/>
-  }
+  
   switch(post.source) {
     case 'foxnews':
-      showtext = context.map((item, index) => (
-        <div className="content" key={index}>
-          {item}
-        </div>
-      ))
+      imgshow = <Image preview={false} className="image-size" src={post.img_url} fallback={post.iconload_img}/>
+      showtext = context.map((item, index) => {
+        const strong = "<strong"
+        if (!item.includes(strong)) {
+          const html = { __html: item }
+          return (
+            <div className="content" key={index} dangerouslySetInnerHTML={html} />
+          )
+        }
+      })
+      break;
+    case 'cbsnews':
+      imgshow = <Image preview={false} className="image-size" src={post.img_url} fallback={post.load_img}/>
+      showtext = context.map((item, index) => {
+        const strong = "<strong"
+        if (!item.includes(strong)) {
+          const html = { __html: item }
+          return (
+            <div className="content" key={index} dangerouslySetInnerHTML={html} />
+          )
+        }
+      })
       break;
       case 'bbc':
-      showtext = context.map((item, index) => (
-        <div className="content" key={index}>
-          {item}
-        </div>
-      ))
+      showtext = context.map((item, index) => {
+        const img = "<img"
+        const greyLine = "grey line"
+        if (!item.includes(greyLine)) {
+          if (item.includes(img)) {
+            const html = { __html: item }
+            return (
+              <div className="content" key={index} dangerouslySetInnerHTML={html} />
+            )
+          } 
+            return (
+              <div className="content" key={index}>
+                {item}
+              </div>
+            )
+        }
+      })
       break;
       default:
+        if(post.src) {
+            imgshow = <Image preview={false} className="image-size" src={imagesUrl} fallback={backImgUrl}/>
+          }
         showtext = context.map((item, index) => (
             <div className="content" key={index}>
               {item}
@@ -40,13 +70,13 @@ const blogPost = ({ data }) => {
 
   return (
     <Layout>
+      <div className="postmain">
       <SEO title={post.title} description={post.description} />
       <div style={{ textAlign:"right", marginRight:20 }}>
       <Affix offsetTop={520}>
           <Button type="primary" size="large" shape="circle" icon={<CaretLeftOutlined />} onClick={() => navigate(-1)} />
       </Affix>
       </div>
-      <div className="post-main">
       <h4>{post.title}</h4>
       {imgshow}
       {showtext}
