@@ -1,8 +1,10 @@
+const url = `https://limitoo.com`
 module.exports = {
   siteMetadata: {
     title: `Limitoo News`,
     description: `The World news.`,
     author: `@Limitoo`,
+    website: url,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -60,11 +62,12 @@ module.exports = {
         ]
       }
     },
+    `gatsby-plugin-sitemap`,
     {
       resolve: 'gatsby-plugin-robots-txt',
       options: {
-        host: 'https://www.21newsx.com',
-        sitemap: 'https://www.21newsx.com/sitemap.xml',
+        host: url,
+        sitemap: `${url}/sitemap.xml`,
         env: {
           development: {
             policy: [{ userAgent: '*', disallow: ['/'] }]
