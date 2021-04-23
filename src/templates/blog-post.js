@@ -11,7 +11,7 @@ const blogPost = ({ data }) => {
   const context = JSON.parse(post.content)
   const backImgUrl = `https://oss.edms.site/news/${post.local_src}`
   const imagesUrl = post.src
-  const seourl = `https://21newsx.com/posts/${getUuid(post.title)}/`
+  const seourl = `https://limitoo.com/posts/${getUuid(post.title)}/`
   let imgshow = <></>
   let showtext = <></>
   let seoimges = post.img_url
