@@ -1,8 +1,8 @@
 {
-  "name": "limit_oo",
+  "name": "limitoo",
   "private": true,
   "description": "Limit->oo",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "author": "Richard Wang <wangleihd@gmail.com>",
   "dependencies": {
     "antd": "^4.15.2",
