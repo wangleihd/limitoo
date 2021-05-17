@@ -21,6 +21,7 @@ function Bbc({ news }) {
     src,
     source,
     menu,
+    href_hash,
     local_src,
     load_img,
     img_url,
@@ -42,7 +43,7 @@ imagesUrl = src
     <div className="item-bbc" key={img_url}>
       <Row gutter={[8]} justify="start">
         <Col span={24}>
-        <Link to={`/posts/${getUuid(title)}/`}>
+        <Link to={`/posts/${href_hash}/`}>
              <div className="title">{title}</div>
           </Link>
           <div className="desc">{description}</div>

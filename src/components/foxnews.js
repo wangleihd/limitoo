@@ -20,6 +20,7 @@ const getUuid = require('uuid-by-string')
 function FoxNews({ news }) {
   const { title,
     status,
+    href_hash,
     src,
     source,
     menu,
@@ -51,7 +52,7 @@ imagesUrl = src
            />
         </Col>
         <Col span={16}>
-        <Link to={`/posts/${getUuid(title)}/`}>
+        <Link to={`/posts/${href_hash}/`}>
              <div className="title">{title}</div>
           </Link>
         </Col>

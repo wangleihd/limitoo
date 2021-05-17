@@ -1,5 +1,4 @@
 const path = require(`path`)
-const getUuid = require('uuid-by-string')
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
@@ -14,6 +13,7 @@ exports.createPages = ({ graphql, actions }) => {
           source
           href
           create_time(formatString: "MM-DD-YYYY")
+          href_hash
         }
       }
     }
@@ -22,13 +22,13 @@ exports.createPages = ({ graphql, actions }) => {
     posts.forEach(({ node }) => {
       createPage({
         // Decide URL structure
-        path: `/posts/${getUuid(node.title)}/`,
+        path: `/posts/${node.href_hash}/`,
         // path to template
         component: path.resolve(`./src/templates/blog-post.js`),
         context: {
           // This is the $slug variable
           // passed to blog-post.js
-          slug: node.href,
+          slug: node.href_hash,
         },
       })
     })

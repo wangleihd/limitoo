@@ -4,14 +4,13 @@ import { Affix, Button, Image } from 'antd';
 import { CaretLeftOutlined } from '@ant-design/icons';
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-const getUuid = require('uuid-by-string')
 
 const blogPost = ({ data }) => {
   const post = data.allMysqlLists.edges[0].node
   const context = JSON.parse(post.content)
   const backImgUrl = `https://oss.edms.site/news/${post.local_src}`
   const imagesUrl = post.src
-  const seourl = `https://limitoo.com/posts/${getUuid(post.title)}/`
+  const seourl = `https://limitoo.com/posts/${post.href_hash}/`
   let imgshow = <></>
   let showtext = <></>
   let seoimges = post.img_url
@@ -95,7 +94,7 @@ const blogPost = ({ data }) => {
 
 export const query = graphql`
 query($slug: String!) {
-  allMysqlLists(filter: { href: { eq: $slug } }) {
+  allMysqlLists(filter: { href_hash: { eq: $slug } }) {
     edges {
       node {
         title
@@ -111,6 +110,7 @@ query($slug: String!) {
         country
         create_time
         content
+        href_hash
       }
     }
   }

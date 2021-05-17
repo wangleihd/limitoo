@@ -79,6 +79,7 @@ query($skip: Int!, $limit: Int!) {
     edges {
       node {
         title
+        href_hash
         status
         src
         source
