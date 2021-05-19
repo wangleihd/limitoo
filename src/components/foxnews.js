@@ -43,21 +43,21 @@ imagesUrl = src
   return (
     <div className="item" key={img_url}>
       <Row gutter={[8]} justify="start">
-        <Col span={8}>
-          <Image
-            preview={false}
-            className="image-size"
-            src={imagesUrl}
-            fallback={backImgUrl}
-           />
-        </Col>
-        <Col span={16}>
+        <Col span={24}>
         <Link to={`/posts/${href_hash}/`}>
              <div className="title">{title}</div>
           </Link>
         </Col>
         <Col span={24}>
           <div className="desc">{description}</div>
+        </Col>
+        <Col span={24}>
+          <Image
+            preview={false}
+            className="image-size"
+            src={imagesUrl}
+            fallback={backImgUrl}
+           />
         </Col>
       </Row>
       <Row gutter={[8]} justify="start" align="middle">

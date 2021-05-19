@@ -14,7 +14,6 @@ const blogPost = ({ data }) => {
   let imgshow = <></>
   let showtext = <></>
   let seoimges = post.img_url
-
   if(post.src) {
       seoimges = post.src
   }
@@ -83,7 +82,7 @@ const blogPost = ({ data }) => {
           <Button type="primary" size="large" shape="circle" icon={<CaretLeftOutlined />} onClick={() => navigate(-1)} />
       </Affix>
       </div>
-      <h4>{post.title}</h4>
+      <div className="posttitle">{post.title}</div>
       {imgshow}
       {showtext}
       </div>

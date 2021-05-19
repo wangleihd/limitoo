@@ -6,24 +6,40 @@
     background-color: #fff;
 }
 .title {
-    font-size: 1rem;
-    line-height: 1.2rem;
     color: #061178;
-    font-weight:600;
+    font-size: 1.1125rem;
+    line-height: 1.3375rem;
+    font-weight: 500;
 }
 .desc {
-    font-size: 0.8rem;
-    line-height: 1rem;
     color: #434343;
     margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    -webkit-letter-spacing: normal;
+    -moz-letter-spacing: normal;
+    -ms-letter-spacing: normal;
+    letter-spacing: normal;
+    line-height: 1.275rem;
 }
 .image-size {
     width: 100%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.posttitle {
+    color: #121212;
+    font-weight: 700;
+    font-size: 1.3125rem;
+    line-height: 1.6375rem;
+    text-align: left;
+    margin-bottom: 1rem;
+    margin-top: -3rem;
 }
 
 .content{
-    font-size: 0.9rem;
-    line-height: 1.2rem;
+    font-size: 0.925rem;
+    line-height: 1.325rem;
     color: #434343;
     font-weight:400;
     margin-bottom: 1rem;
