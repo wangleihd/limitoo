@@ -2,7 +2,7 @@ const url = `https://limitoo.com`
 module.exports = {
   siteMetadata: {
     title: `Limitoo News`,
-    description: `The World news.`,
+    description: `Limitoo news is global news, entertainment, and life website. It will extract hot news from professional news websites in various countries. Let you watch the news of various countries at any time. visit: https://limitoo.com`,
     author: `@Limitoo`,
     siteUrl: url,
   },
