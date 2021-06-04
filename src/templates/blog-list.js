@@ -33,6 +33,8 @@ class IndexLists extends React.Component {
               return (<Bbc news={node} key={index} />)
             case 'nytime':
               return (<Item news={node} key={index} />)
+            case 'abc':
+              return (<Foxnews news={node} key={index} />)
             default:
               return (<Item news={node} key={index} />)
           }

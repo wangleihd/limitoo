@@ -49,6 +49,10 @@ module.exports = {
       resolve: `gatsby-source-mysql`,
       options: {
         connectionDetails: {
+          // host: '130.61.52.228',
+          // user: 'tempnewsadmin',
+          // password: 'FD32sd$7De9ds^&',
+          // database: 'tempnews'
           host: 'sql427.main-hosting.eu',
           user: 'u637214094_spider',
           password: 'Aasdfgh12@',

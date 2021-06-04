@@ -62,6 +62,31 @@ const blogPost = ({ data }) => {
         }
       })
       break;
+      case 'abc':
+      showtext = context.map((item, index) => {
+        const img = "<img"
+        const div = "<div"
+        const greyLine = "grey line"
+        if (!item.includes(greyLine)) {
+          if (item.includes(img)) {
+            const html = { __html: item }
+            return (
+              <div key={index} dangerouslySetInnerHTML={html} />
+            )
+          } if (item.includes(div)) {
+            const html = { __html: item }
+            return (
+              <div key={index} dangerouslySetInnerHTML={html} />
+            )
+          }
+            return (
+              <div className="content" key={index}>
+                {item}
+              </div>
+            )
+        }
+      })
+      break;
       default:
         if(post.src) {
             imgshow = <Image preview={false} className="image-size" src={imagesUrl} fallback={backImgUrl}/>

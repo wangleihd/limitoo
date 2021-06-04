@@ -10,7 +10,6 @@ import * as dayjs from "dayjs"
 import * as relativeTime from "dayjs/plugin/relativeTime"
 import { Link } from "gatsby"
 import PropTypes from "prop-types"
-const getUuid = require('uuid-by-string')
 
 import { Row, Col, Image, Tag } from "antd"
 
