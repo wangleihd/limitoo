@@ -77,3 +77,10 @@
     text-align: left;
     margin-bottom: 1rem;
 }
+.titledesc {
+    font-size: 1.175rem;
+    line-height: 1.325rem;
+    color: #5f5f5f;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
