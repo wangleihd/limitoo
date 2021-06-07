@@ -42,7 +42,7 @@ imagesUrl = src
 }
   return (
     <div className="items" key={img_url}>
-      <div className="item">
+      <div className="it">
       <Row gutter={[8]} justify="start">
         <Col span={24}>
           <Link to={`/posts/${href_hash}/`} className="head1" >
@@ -62,7 +62,7 @@ imagesUrl = src
             fallback={backImgUrl}
            />
       </div>
-      <div className="item">
+      <div className="it">
       <Row gutter={[8]} justify="start" align="middle">
         <Col span={8}>
           <Tag>{menu}</Tag>
