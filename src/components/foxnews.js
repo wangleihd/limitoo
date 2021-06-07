@@ -41,25 +41,28 @@ backImgUrl = `https://oss.edms.site/news/${local_src}`
 imagesUrl = src
 }
   return (
-    <div className="item" key={img_url}>
+    <div className="items" key={img_url}>
+      <div className="item">
       <Row gutter={[8]} justify="start">
         <Col span={24}>
-        <Link to={`/posts/${href_hash}/`}>
-             <div className="title">{title}</div>
+          <Link to={`/posts/${href_hash}/`} className="head1" >
+             {title}
           </Link>
         </Col>
         <Col span={24}>
           <div className="desc">{description}</div>
         </Col>
-        <Col span={24}>
+      </Row>
+      </div>
+      <div>
           <Image
             preview={false}
             className="image-size"
             src={imagesUrl}
             fallback={backImgUrl}
            />
-        </Col>
-      </Row>
+      </div>
+      <div className="item">
       <Row gutter={[8]} justify="start" align="middle">
         <Col span={8}>
           <Tag>{menu}</Tag>
@@ -76,6 +79,7 @@ imagesUrl = src
           </div>
         </Col>
       </Row>
+      </div>
     </div>
   )
 }

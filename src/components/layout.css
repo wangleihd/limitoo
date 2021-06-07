@@ -606,4 +606,13 @@ pre tt:after {
   height: 30rem;
   overflow: auto;
 }
+a:visited {
+  color: rebeccapurple;
+}
+a:active {
+  color: rebeccapurple;
+}
+a:hover {
+  color: cornflowerblue;
+}
 

@@ -1,12 +1,20 @@
-.item {
+.items {
     margin: 0.5rem;
-    padding: 0.5rem;
     border: 0.1rem solid #f0f0f0;
     border-radius: 0.2rem;
     background-color: #fff;
 }
-.title {
+.item {
+    padding: 0.5rem;
+    background-color: #fff;
+}
+.head1 {
     color: #061178;
+    font-size: 1.1125rem;
+    line-height: 1.3375rem;
+    font-weight: 500;
+}
+.head1:visited {
     font-size: 1.1125rem;
     line-height: 1.3375rem;
     font-weight: 500;
@@ -75,6 +83,7 @@
     font-size: 1.3125rem;
     line-height: 1.2375rem;
     text-align: left;
+    margin-top: 1rem;
     margin-bottom: 1rem;
 }
 .titledesc {

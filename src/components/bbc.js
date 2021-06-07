@@ -43,8 +43,8 @@ imagesUrl = src
     <div className="item-bbc" key={img_url}>
       <Row gutter={[8]} justify="start">
         <Col span={24}>
-        <Link to={`/posts/${href_hash}/`}>
-             <div className="title">{title}</div>
+          <Link to={`/posts/${href_hash}/`} className="head1" >
+             {title}
           </Link>
           <div className="desc">{description}</div>
         </Col>

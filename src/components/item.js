@@ -51,8 +51,8 @@ function Item({ news }) {
            />
         </Col>
         <Col span={16}>
-          <Link to={`/posts/${href_hash}/`}>
-             <div className="title">{title}</div>
+          <Link to={`/posts/${href_hash}/`} className="head1" >
+             {title}
           </Link>
         </Col>
         <Col span={24}>
