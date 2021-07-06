@@ -3,21 +3,22 @@ const path = require(`path`)
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
   return graphql(`
-  {
-    allMysqlLists(sort: {fields: create_time, order: DESC}) {
-      edges {
-        node {
-          title
-          description
-          menu
-          source
-          href
-          create_time(formatString: "MM-DD-YYYY")
-          href_hash
+    {
+      allMysqlLists(sort: { fields: create_time, order: DESC }) {
+        edges {
+          node {
+            title
+            description
+            menu
+            source
+            href
+            create_time(formatString: "MM-DD-YYYY")
+            href_hash
+          }
         }
       }
     }
-  }`).then(result => {
+  `).then(result => {
     const posts = result.data.allMysqlLists.edges
     posts.forEach(({ node }) => {
       createPage({
@@ -48,8 +49,5 @@ exports.createPages = ({ graphql, actions }) => {
         },
       })
     })
-
-
-
   })
 }

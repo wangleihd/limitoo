@@ -53,34 +53,34 @@ module.exports = {
           // user: 'tempnewsadmin',
           // password: 'FD32sd$7De9ds^&',
           // database: 'tempnews'
-          host: 'sql427.main-hosting.eu',
-          user: 'u637214094_spider',
-          password: 'Aasdfgh12@',
-          database: 'u637214094_spider'
+          host: '130.61.52.228',
+          user: 'newsuser',
+          password: 'sDsd@#E$%&e9d',
+          database: 'newsdb'
         },
         queries: [
           {
-            statement: 'select * from nytimes ny, nytimes_details nyd where ny.id = nyd.nytimes_id order by ny.create_time desc limit 4000',
-            idFieldName: 'title',
-            name: 'Lists'
-          }
-        ]
-      }
+            statement: "select * from news ny, details nyd where ny.id = nyd.news_id order by ny.create_time desc limit 4000",
+            idFieldName: "title",
+            name: "Lists",
+          },
+        ],
+      },
     },
     {
-      resolve: 'gatsby-plugin-robots-txt',
+      resolve: "gatsby-plugin-robots-txt",
       options: {
         host: url,
         sitemap: `${url}/sitemap.xml`,
         env: {
           development: {
-            policy: [{ userAgent: '*', disallow: ['/'] }]
+            policy: [{ userAgent: "*", disallow: ["/"] }],
           },
           production: {
-            policy: [{ userAgent: '*', allow: '/' }]
-          }
-        }
-      }
-    }
+            policy: [{ userAgent: "*", allow: "/" }],
+          },
+        },
+      },
+    },
   ],
 }

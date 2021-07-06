@@ -16,19 +16,20 @@ import { Row, Col, Image, Tag } from "antd"
 import "./item.css"
 
 function Item({ news }) {
-  const { title,
-        status,
-        href_hash,
-        src,
-        source,
-        menu,
-        local_src,
-        load_img,
-        img_url,
-        href,
-        description,
-        create_time,
-        country,
+  const {
+    title,
+    status,
+    href_hash,
+    src,
+    source,
+    menu,
+    local_src,
+    load_img,
+    img_url,
+    href,
+    description,
+    create_time,
+    country,
   } = news
   dayjs.extend(relativeTime)
   const ctime = dayjs().to(dayjs(create_time))
@@ -48,11 +49,11 @@ function Item({ news }) {
             className="image-size"
             src={imagesUrl}
             fallback={backImgUrl}
-           />
+          />
         </Col>
         <Col span={16}>
-          <Link to={`/posts/${href_hash}/`} className="head1" >
-             {title}
+          <Link to={`/posts/${href_hash}/`} className="head1">
+            {title}
           </Link>
         </Col>
         <Col span={24}>

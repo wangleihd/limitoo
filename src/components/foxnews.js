@@ -15,10 +15,11 @@ import { Row, Col, Image, Tag } from "antd"
 
 import "./item.css"
 
-const getUuid = require('uuid-by-string')
+const getUuid = require("uuid-by-string")
 
 function FoxNews({ news }) {
-  const { title,
+  const {
+    title,
     status,
     href_hash,
     src,
@@ -31,54 +32,54 @@ function FoxNews({ news }) {
     description,
     create_time,
     country,
-} = news
-dayjs.extend(relativeTime)
-const ctime = dayjs().to(dayjs(create_time))
-let backImgUrl = `https://oss.edms.site/news/${load_img}`
-let imagesUrl = img_url
-if (local_src) {
-backImgUrl = `https://oss.edms.site/news/${local_src}`
-imagesUrl = src
-}
+  } = news
+  dayjs.extend(relativeTime)
+  const ctime = dayjs().to(dayjs(create_time))
+  let backImgUrl = `https://oss.edms.site/news/${load_img}`
+  let imagesUrl = img_url
+  if (local_src) {
+    backImgUrl = `https://oss.edms.site/news/${local_src}`
+    imagesUrl = src
+  }
   return (
     <div className="items" key={img_url}>
       <div className="it">
-      <Row gutter={[8]} justify="start">
-        <Col span={24}>
-          <Link to={`/posts/${href_hash}/`} className="head1" >
-             {title}
-          </Link>
-        </Col>
-        <Col span={24}>
-          <div className="desc">{description}</div>
-        </Col>
-      </Row>
+        <Row gutter={[8]} justify="start">
+          <Col span={24}>
+            <Link to={`/posts/${href_hash}/`} className="head1">
+              {title}
+            </Link>
+          </Col>
+          <Col span={24}>
+            <div className="desc">{description}</div>
+          </Col>
+        </Row>
       </div>
       <div>
-          <Image
-            preview={false}
-            className="image-size"
-            src={imagesUrl}
-            fallback={backImgUrl}
-           />
+        <Image
+          preview={false}
+          className="image-size"
+          src={imagesUrl}
+          fallback={backImgUrl}
+        />
       </div>
       <div className="it">
-      <Row gutter={[8]} justify="start" align="middle">
-        <Col span={8}>
-          <Tag>{menu}</Tag>
-        </Col>
-        <Col span={8}>
-          <div className="ctime">{ctime}</div>
-        </Col>
-        <Col span={8}>
-          <div className="source">
-            src:{" "}
-            <a href={href} target="blank">
-              {source.toUpperCase()}
-            </a>
-          </div>
-        </Col>
-      </Row>
+        <Row gutter={[8]} justify="start" align="middle">
+          <Col span={8}>
+            <Tag>{menu}</Tag>
+          </Col>
+          <Col span={8}>
+            <div className="ctime">{ctime}</div>
+          </Col>
+          <Col span={8}>
+            <div className="source">
+              src:{" "}
+              <a href={href} target="blank">
+                {source.toUpperCase()}
+              </a>
+            </div>
+          </Col>
+        </Row>
       </div>
     </div>
   )
