@@ -70,9 +70,7 @@ function Item({ news }) {
         <Col span={8}>
           <div className="source">
             src:{" "}
-            <a href={href} target="blank">
-              {source.toUpperCase()}
-            </a>
+            <span className="blue">{source.toUpperCase()}</span>
           </div>
         </Col>
       </Row>

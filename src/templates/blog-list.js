@@ -35,12 +35,10 @@ class IndexLists extends React.Component {
           switch (node.source) {
             case "foxnews":
               return <Foxnews news={node} key={index} />
-            case "bbc":
-              return <Bbc news={node} key={index} />
             case "nytime":
-              return <Item news={node} key={index} />
+                return <Item news={node} key={index} />
+            case "bbc":
             case "abc":
-              return <Foxnews news={node} key={index} />
             case "newsweek":
               return <Foxnews news={node} key={index} />
             case "lemonde":

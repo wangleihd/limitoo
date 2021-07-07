@@ -11,6 +11,7 @@ const blogPost = ({ data }) => {
   const backImgUrl = `https://oss.edms.site/news/${post.local_src}`
   const imagesUrl = post.src
   const seourl = `https://limitoo.com/posts/${post.href_hash}/`
+  const {href, source} = post
   let imgshow = <></>
   let showtext = <></>
   let seoimges = post.img_url
@@ -68,17 +69,16 @@ const blogPost = ({ data }) => {
     case "bbc":
       showtext = context.map((item, index) => {
         const img = "<img"
+        const div = "<div"
         const greyLine = "grey line"
         if (!item.includes(greyLine)) {
           if (item.includes(img)) {
             const html = { __html: item }
-            return (
-              <div
-                className="content"
-                key={index}
-                dangerouslySetInnerHTML={html}
-              />
-            )
+            return <div key={index} dangerouslySetInnerHTML={html} />
+          }
+          if (item.includes(div)) {
+            const html = { __html: item }
+            return <div key={index} dangerouslySetInnerHTML={html} />
           }
           return (
             <div className="content" key={index}>
@@ -203,6 +203,12 @@ const blogPost = ({ data }) => {
         <div className="posttitle">{post.title}</div>
         {imgshow}
         {showtext}
+        <div className="source">
+             source:{" "}
+            <a href={href} target="blank">
+              {source.toUpperCase()}
+            </a>
+        </div>
       </div>
     </Layout>
   )
